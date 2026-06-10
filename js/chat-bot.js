@@ -35,9 +35,9 @@ function obterSaudacao() {
 function perguntar() {
     leitor.question(obterSaudacao(), (resposta) => {  //chamei "obterSaudacao()" para retornar a frase do JSON.
     
-        resposta = resposta.toLowerCase(); // reconhe maiscula como minusculas
+        resposta = resposta.toLowerCase();  // reconhe maiscula como minusculas
 
-        if (dados.perguntas.dia.some(p => resposta.includes(p))) { //O método ".includes()" verifica se uma string contém um determinado texto. O método ".some()" percorre o array e retorna true se pelo menos um item atender à condição.
+        if (dados.perguntas.dia.some(p => resposta.includes(p))) {  //O método ".includes()" verifica se uma string contém um determinado texto. O método ".some()" percorre o array e retorna true se pelo menos um item atender à condição.
             console.log(`Hoje é: ${duvidas.dia}`);
         } else if (dados.perguntas.cidade.some(p => resposta.includes(p))) {
             console.log(`A cidade que você está proucurando é ${duvidas.cidade}`)
@@ -52,9 +52,9 @@ function perguntar() {
             if (dados.respFinal.finalizar.some(p => resposta.includes(p))){
                 console.log('Ok obrigado!')
 
-                leitor.close(); //usar dentro do ultimo leitor para não cortar os outros leitores
+                leitor.close();  //usar dentro do ultimo leitor para não cortar os outros leitores
             } else {
-                perguntar(); //retorna para a pergunta
+                perguntar();  //retorna para a pergunta
             }
         });
     });
