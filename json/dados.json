@@ -1,7 +1,8 @@
 {
     "perguntas": {
         "dia": ["dia", "data", "hoje"],
-        "cidade": ["cidade", "município", "capital"]
+        "cidade": ["cidade", "município", "capital"],
+        "suporte": ["suporte", "atendente", "atendimento", "whatsapp"]
     },
 
     "saudacao": {
