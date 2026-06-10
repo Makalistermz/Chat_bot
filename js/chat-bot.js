@@ -35,7 +35,7 @@ function obterSaudacao() {
 function perguntar() {
     leitor.question(obterSaudacao(), (resposta) => {  //chamei "obterSaudacao()" para retornar a frase do JSON.
     
-        resposta = resposta.toLowerCase();  // reconhe maiscula como minusculas
+        resposta = resposta.toLowerCase();  // reconhe maiúscula como minusculas
 
         if (dados.perguntas.dia.some(p => resposta.includes(p))) {  //O método ".includes()" verifica se uma string contém um determinado texto. O método ".some()" percorre o array e retorna true se pelo menos um item atender à condição.
             console.log(`Hoje é: ${duvidas.dia}`);
