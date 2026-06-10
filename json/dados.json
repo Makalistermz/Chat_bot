@@ -1,17 +1,32 @@
 {
-    "perguntas": {
-        "dia": ["dia", "data", "hoje"],
-        "cidade": ["cidade", "município", "capital"],
-        "suporte": ["suporte", "atendente", "atendimento", "whatsapp"]
+    "palavrasChave": {
+        "dia": [
+            "dia",
+            "data",
+            "hoje"
+        ],
+        "cidade": [
+            "cidade",
+            "município",
+            "capital",
+            "de onde vai vir minha mercadoria?"
+        ],
+        "suporte": [
+            "suporte",
+            "atendente",
+            "atendimento",
+            "whatsapp"
+        ]
     },
-
     "saudacao": {
         "manha": "Bom dia! Como posso ajudar?",
         "tarde": "Boa tarde! Como posso ajudar?",
         "noite": "Boa noite! Como posso ajudar?"
     },
-
     "respFinal": {
-        "finalizar": ["não", "certo"]
+        "finalizar": [
+            "não",
+            "certo"
+        ]
     }
 }
