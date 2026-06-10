@@ -18,8 +18,22 @@ const duvidas = {
     cidade: 'Santa Maria de Jetibá'
 }
 
+let identificarSaudacao = new Date();
+
+let hora = identificarSaudacao.getHours();
+
+function obterSaudacao() {
+    if (hora >= 4 && hora < 12  ) {
+        return dados.saudacao.manha
+    } else if (hora >= 12 && hora < 18) {
+        return dados.saudacao.tarde
+    } else {
+        return dados.saudacao.noite
+    }
+}
+
 function perguntar() {
-    leitor.question('Oque posso ajudar?', (resposta) => {
+    leitor.question(obterSaudacao(), (resposta) => {  //chamei "obterSaudacao()" para retornar a frase do JSON.
     
         resposta = resposta.toLowerCase(); // reconhe maiscula como minusculas
 

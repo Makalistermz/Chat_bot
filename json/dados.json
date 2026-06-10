@@ -4,6 +4,12 @@
         "cidade": ["cidade", "município", "capital"]
     },
 
+    "saudacao": {
+        "manha": "Bom dia! Como posso ajudar?",
+        "tarde": "Boa tarde! Como posso ajudar?",
+        "noite": "Boa noite! Como posso ajudar?"
+    },
+
     "respFinal": {
         "finalizar": ["não", "certo"]
     }
