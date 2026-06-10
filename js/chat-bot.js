@@ -8,24 +8,14 @@ const leitor = readline.createInterface({
 const fs = require('fs');
 
 const dados = JSON.parse(
-    fs.readFileSync('dados.json', 'utf8')
+    fs.readFileSync('../json/dados.json', 'utf8')
 );
 
-
 let data = new Date().toLocaleDateString('pt-BR');
-
-const perguntas = {
-    dia: ['dia', 'data', 'hoje'],
-    cidade: ['cidade', 'município', 'capital']
-}
 
 const duvidas = {
     dia: data,
     cidade: 'Santa Maria de Jetibá'
-}
-
-const respFinal = {
-    finalizar: ['não', 'certo']
 }
 
 function perguntar() {

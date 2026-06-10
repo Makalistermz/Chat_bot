@@ -1,10 +1,10 @@
 {
     "perguntas": {
-        "dia": "['dia', 'data', 'hoje']",
-        "cidade": "['cidade', 'município', 'capital']"
+        "dia": ["dia", "data", "hoje"],
+        "cidade": ["cidade", "município", "capital"]
     },
 
     "respFinal": {
-        "finalizar": "['não', 'certo']"
+        "finalizar": ["não", "certo"]
     }
 }
