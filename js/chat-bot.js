@@ -5,6 +5,13 @@ const leitor = readline.createInterface({
     output: process.stdout
 })
 
+const fs = require('fs');
+
+const dados = JSON.parse(
+    fs.readFileSync('dados.json', 'utf8')
+);
+
+
 let data = new Date().toLocaleDateString('pt-BR');
 
 const perguntas = {
@@ -26,9 +33,9 @@ function perguntar() {
     
         resposta = resposta.toLowerCase(); // reconhe maiscula como minusculas
 
-        if (perguntas.dia.some(p => resposta.includes(p))) { //O método ".includes()" verifica se uma string contém um determinado texto. O método ".some()" percorre o array e retorna true se pelo menos um item atender à condição.
+        if (dados.perguntas.dia.some(p => resposta.includes(p))) { //O método ".includes()" verifica se uma string contém um determinado texto. O método ".some()" percorre o array e retorna true se pelo menos um item atender à condição.
             console.log(`Hoje é: ${duvidas.dia}`);
-        } else if (perguntas.cidade.some(p => resposta.includes(p))) {
+        } else if (dados.perguntas.cidade.some(p => resposta.includes(p))) {
             console.log(`A cidade que você está proucurando é ${duvidas.cidade}`)
         } else {
             console.log('Não entendi oque você quis dizer')
@@ -38,7 +45,7 @@ function perguntar() {
 
             resposta = resposta.toLowerCase();
 
-            if (respFinal.finalizar.some(p => resposta.includes(p))){
+            if (dados.respFinal.finalizar.some(p => resposta.includes(p))){
                 console.log('Ok obrigado!')
 
                 leitor.close(); //usar dentro do ultimo leitor para não cortar os outros leitores
