@@ -7,21 +7,47 @@ const leitor = readline.createInterface({
 
 let data = new Date().toLocaleDateString('pt-BR');
 
+const perguntas = {
+    dia: ['dia', 'data', 'hoje'],
+    cidade: ['cidade', 'município', 'capital']
+}
+
 const duvidas = {
     dia: data,
     cidade: 'Santa Maria de Jetibá'
 }
 
-leitor.question('Oque posso ajudar?', (resposta) => {
+const respFinal = {
+    finalizar: ['não', 'certo']
+}
+
+function perguntar() {
+    leitor.question('Oque posso ajudar?', (resposta) => {
     
-    resposta = resposta.toLocaleLowerCase();
+        resposta = resposta.toLowerCase(); // reconhe maiscula como minusculas
 
-    if (resposta.includes('dia')) { //O método ".includes()" verifica se uma string contém um determinado texto.
-        console.log(`Hoje é: ${duvidas.dia}`);
-    } else if (resposta.includes('cidade')) {
-        console.log(`A cidade que você está proucurando é ${duvidas.cidade}`)
-    }
+        if (perguntas.dia.some(p => resposta.includes(p))) { //O método ".includes()" verifica se uma string contém um determinado texto. O método ".some()" percorre o array e retorna true se pelo menos um item atender à condição.
+            console.log(`Hoje é: ${duvidas.dia}`);
+        } else if (perguntas.cidade.some(p => resposta.includes(p))) {
+            console.log(`A cidade que você está proucurando é ${duvidas.cidade}`)
+        } else {
+            console.log('Não entendi oque você quis dizer')
+        }
 
-    leitor.close() //usar dentro do ultimo leitor para não cortar os outros leitores
-})
+        leitor.question('Mais alguma duvida?', (resposta) => {
 
+            resposta = resposta.toLowerCase();
+
+            if (respFinal.finalizar.some(p => resposta.includes(p))){
+                console.log('Ok obrigado!')
+
+                leitor.close(); //usar dentro do ultimo leitor para não cortar os outros leitores
+            } else {
+                perguntar(); //retorna para a pergunta
+            }
+        });
+    });
+
+}
+
+perguntar();
