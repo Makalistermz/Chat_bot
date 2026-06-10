@@ -1,5 +1,5 @@
 const readline = require('readline');
-const open = require('open').default;  //pacote responsavel por abrir o whatsapp
+const open = require('open').default;  //Biblioteca responsavel por abrir o whatsapp
 
 const leitor = readline.createInterface({
     input: process.stdin,
