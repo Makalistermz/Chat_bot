@@ -1,0 +1,21 @@
+{
+    "perfumes": {
+        "attar al wesal": {
+            "nome": "Attar Al Wesal",
+            "preco": 179.90,
+            "categoria": "doce",
+            "genero": "masculino",
+            "ocasiao": "noite",
+            "estoque": 12
+        },
+
+        "fakhar rose gold": {
+            "nome": "Fakhar Rose Gold",
+            "preco": 189.90,
+            "categoria": "floral",
+            "genero": "feminino",
+            "ocasiao": "dia",
+            "estoque": 8
+        }
+    }
+}

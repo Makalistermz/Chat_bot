@@ -12,6 +12,10 @@ const dados = JSON.parse(
     fs.readFileSync('../json/dados.json', 'utf8')
 );
 
+const produtos = JSON.parse(
+    fs.readFileSync('../json/produtos.json', 'utf8') 
+);
+
 const numeroSuporte = '5527995128081'
 const mensagem = 'Olá, Gostaria de falar com o suporte!'
 
@@ -69,6 +73,17 @@ function perguntar() {
     
         resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
 
+        function identificarPerfume(resposta) {
+            for (const perfume in produtos.perfumes) {
+                if (resposta.includes(perfume)) {
+                return produtos.perfumes[perfume];
+            }
+        }
+        return null;
+        }
+
+        const perfumeEncontrado = identificarPerfume(resposta);
+
         if (verificarPalavra(resposta, dados.palavrasChave.dia)) {  //O método ".includes()" verifica se uma string contém um determinado texto. O método ".some()" percorre o array e retorna true se pelo menos um item atender à condição.
             console.log(`Hoje é: ${duvidas.dia}`);
             perguntarDenovo()
@@ -82,6 +97,13 @@ function perguntar() {
             open(linkWhatsapp);  //resposavel por abrir o whatsapp
             perguntarDenovo()
 
+        } else if(verificarPalavra(resposta, dados.palavrasChave.valor)) {
+            console.log(
+                `O perfume ${perfumeEncontrado.nome} custa APENAS! R$ ${perfumeEncontrado.preco.toFixed(2)}`
+            ) //toFixed(2) serve para formatar números decimais
+            
+            perguntarDenovo()
+        
         } else {
             console.log('Não entendi oque você quis dizer')
             
