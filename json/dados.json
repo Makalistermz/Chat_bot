@@ -26,11 +26,21 @@
             "whatsapp"
         ]
     },
+
+    "resposta": {
+        "origemProduto": [
+            "Nossos Produtos são enviados de Santa Maria de Jetibá.",
+            "Sua mercadoria será enviada de Santa Maria de Jetibá",
+            "A origem do produto é Santa Maria de Jetibá"
+        ]
+    },
+
     "saudacao": {
         "manha": "Bom dia! Como posso ajudar?",
         "tarde": "Boa tarde! Como posso ajudar?",
         "noite": "Boa noite! Como posso ajudar?"
     },
+
     "respFinal": {
         "finalizar": [
             "não",

@@ -12,10 +12,6 @@ const dados = JSON.parse(
     fs.readFileSync('../json/dados.json', 'utf8')
 );
 
-const historico = JSON.parse(
-    fs.readFileSync('../json/historico.json', 'utf8')
-);
-
 const numeroSuporte = '5527995128081'  //numero que vai ser aberto
 const mensagem = 'Olá, Gostaria de falar com o suporte!'  //mensagem do whatsapp
 
@@ -63,9 +59,9 @@ function verificarPalavra(resposta, listaPalavras) {
     });
 }
 
-function fraseAleatória(lista) {
-    const indiceAleatório = Math.floor(Math.random() * lista.length);
-    return lista[indiceAleatório];
+function fraseAleatoria(lista) {
+    const indiceAleatorio = Math.floor(Math.random() * lista.length);
+    return lista[indiceAleatorio];
 }
 
 function perguntar() {
@@ -78,7 +74,7 @@ function perguntar() {
             perguntarDenovo()
 
         } else if (verificarPalavra(resposta, dados.palavrasChave.origemProduto)) {
-            console.log(`O seu produto irá vim de ${duvidas.origemProduto}`)
+            console.log(fraseAleatoria(dados.resposta.origemProduto))
             perguntarDenovo()
 
         } else if (verificarPalavra(resposta, dados.palavrasChave.suporte)) {
@@ -90,7 +86,7 @@ function perguntar() {
             console.log('Não entendi oque você quis dizer')
             
             leitor.question(
-                'Essa pergunta é sobre:\n1. Dia\n2. Cidade\n3. Suporte\nEscolha uma opção: ', 
+                'Essa pergunta é sobre:\n1. Dia\n2. Origem do Produto\n3. Suporte\nEscolha uma opção: ', 
                 (categoria) => {
                     if (categoria === '1') {
                         dados.palavrasChave.dia.push(resposta)
