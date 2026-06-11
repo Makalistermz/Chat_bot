@@ -72,8 +72,8 @@ function perguntar() {
             console.log(`Hoje é: ${duvidas.dia}`);
             perguntarDenovo()
 
-        } else if (verificarPalavra(resposta, dados.palavrasChave.cidade)) {
-            console.log(`A cidade que você está proucurando é ${duvidas.cidade}`)
+        } else if (verificarPalavra(resposta, dados.palavrasChave.origemProduto)) {
+            console.log(`O seu produto irá vim de ${duvidas.origemProduto}`)
             perguntarDenovo()
 
         } else if (verificarPalavra(resposta, dados.palavrasChave.suporte)) {
@@ -90,7 +90,7 @@ function perguntar() {
                     if (categoria === '1') {
                         dados.palavrasChave.dia.push(resposta)
                     } else if (categoria === '2') {
-                        dados.palavrasChave.cidade.push(resposta)
+                        dados.palavrasChave.origemProduto.push(resposta)
                     } else if (categoria === '3') {
                         dados.palavrasChave.suporte.push(resposta)
                     } else {
