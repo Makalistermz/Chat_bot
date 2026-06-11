@@ -108,7 +108,7 @@ function perguntar() {
             console.log('Não entendi oque você quis dizer')
             
             leitor.question(
-                'Essa pergunta é sobre:\n1. Dia\n2. Origem do Produto\n3. Suporte\nEscolha uma opção: ', 
+                'Essa pergunta é sobre:\n1. Dia\n2. Origem do Produto\n3. Suporte\n4. Valor do produto\nEscolha uma opção: ', 
                 (categoria) => {
                     if (categoria === '1') {
                         dados.palavrasChave.dia.push(resposta)
@@ -116,6 +116,8 @@ function perguntar() {
                         dados.palavrasChave.origemProduto.push(resposta)
                     } else if (categoria === '3') {
                         dados.palavrasChave.suporte.push(resposta)
+                    } else if (categoria === '4') {
+                        dados.palavraChave.valor.push(resposta)
                     } else {
                         console.log('Opção inválida.');
                         perguntar();
