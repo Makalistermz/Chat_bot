@@ -42,7 +42,7 @@ function obterSaudacao() {
     }
 }
 
-//console.log(
+//console.log(  Exemplo de como funciona o JaroWinklerDistance
 //    natural.JaroWinklerDistance(
 //        'suporte',
 //        'supoorte'
@@ -61,6 +61,11 @@ function verificarPalavra(resposta, listaPalavras) {
             return resposta.includes(palavraChave) || similaridade >= 0.85;
         });
     });
+}
+
+function fraseAleatória(lista) {
+    const indiceAleatório = Math.floor(Math.random() * lista.length);
+    return lista[indiceAleatório];
 }
 
 function perguntar() {
