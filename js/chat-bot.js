@@ -1,3 +1,6 @@
+/*
+        Recomendar perfumes proxima atualização por categoria, ex: "Quero um perfume doce"
+*/
 const readline = require('readline');
 const fs = require('fs');
 const open = require('open').default;  //Biblioteca responsavel por abrir o whatsapp
