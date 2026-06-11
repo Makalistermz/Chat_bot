@@ -12,10 +12,10 @@ const dados = JSON.parse(
     fs.readFileSync('../json/dados.json', 'utf8')
 );
 
-const numeroSuporte = '5527995128081'  //numero que vai ser aberto
-const mensagem = 'Olá, Gostaria de falar com o suporte!'  //mensagem do whatsapp
+const numeroSuporte = '5527995128081'
+const mensagem = 'Olá, Gostaria de falar com o suporte!'
 
-const linkWhatsapp = `https://wa.me/${numeroSuporte}?text=${encodeURIComponent(mensagem)}`;  //link para abrir o whatsapp
+const linkWhatsapp = `https://wa.me/${numeroSuporte}?text=${encodeURIComponent(mensagem)}`;
 
 let data = new Date().toLocaleDateString('pt-BR');
 
