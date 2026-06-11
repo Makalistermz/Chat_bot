@@ -42,20 +42,41 @@ function obterSaudacao() {
     }
 }
 
+//console.log(
+//    natural.JaroWinklerDistance(
+//        'suporte',
+//        'supoorte'
+//    )
+//);
+
+function verificarPalavra(resposta, listaPalavras) {
+    const palavrasDigitadas = resposta.split(' '); //Separar a frase em palavras
+
+    return listaPalavras.some(palavraChave => {
+        return palavrasDigitadas.some(palavraDigitada => {
+            const similaridade = natural.JaroWinklerDistance(  //Calcular a similaridade
+                palavraDigitada,
+                palavraChave
+            );
+            return resposta.includes(palavraChave) || similaridade >= 0.85;
+        });
+    });
+}
+
 function perguntar() {
     leitor.question(obterSaudacao(), (resposta) => {  //chamei "obterSaudacao()" para retornar a frase do JSON.
     
         resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
 
-        if (dados.palavrasChave.dia.some(p => resposta.includes(p))) {  //O método ".includes()" verifica se uma string contém um determinado texto. O método ".some()" percorre o array e retorna true se pelo menos um item atender à condição.
+        if (verificarPalavra(resposta, dados.palavrasChave.dia)) {  //O método ".includes()" verifica se uma string contém um determinado texto. O método ".some()" percorre o array e retorna true se pelo menos um item atender à condição.
             console.log(`Hoje é: ${duvidas.dia}`);
             perguntarDenovo()
 
-        } else if (dados.palavrasChave.cidade.some(p => resposta.includes(p))) {
+        } else if (verificarPalavra(resposta, dados.palavrasChave.cidade)) {
             console.log(`A cidade que você está proucurando é ${duvidas.cidade}`)
             perguntarDenovo()
 
-        } else if (dados.palavrasChave.suporte.some(p => resposta.includes(p))) {
+        } else if (verificarPalavra(resposta, dados.palavrasChave.suporte)) {
             console.log('Abrindo Whatsapp do suporte...');
             open(linkWhatsapp);  //resposavel por abrir o whatsapp
             perguntarDenovo()

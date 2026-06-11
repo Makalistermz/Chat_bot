@@ -8,9 +8,15 @@
         "cidade": [
             "cidade",
             "município",
-            "capital",
+            "mercadoria",
+            "produto",
+            "vim",
+            "vir",
+            "vem",
+            "onde",
             "de onde vai vir minha mercadoria?",
-            "de onde vai vim meu produto"
+            "de onde vai vim meu produto",
+            "de onde ira vim minha mercadoria?"
         ],
         "suporte": [
             "suporte",
