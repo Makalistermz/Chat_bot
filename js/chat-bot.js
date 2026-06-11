@@ -1,6 +1,7 @@
 const readline = require('readline');
 const fs = require('fs');
 const open = require('open').default;  //Biblioteca responsavel por abrir o whatsapp
+const natural = require('natural');
 
 const leitor = readline.createInterface({
     input: process.stdin,
