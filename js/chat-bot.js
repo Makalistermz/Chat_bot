@@ -24,8 +24,7 @@ const linkWhatsapp = `https://wa.me/${numeroSuporte}?text=${encodeURIComponent(m
 let data = new Date().toLocaleDateString('pt-BR');
 
 const duvidas = {
-    dia: data,
-    cidade: 'Santa Maria de Jetibá'
+    dia: data
 }
 
 let identificarSaudacao = new Date();
