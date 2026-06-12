@@ -4,14 +4,14 @@ Um chatbot inteligente desenvolvido em **Node.js** para um marketplace, capaz de
 
 ## 📋 Sobre o Projeto
 
-Este chatbot foi desenvolvido para atuar como um assistente virtual em um marketplace de perfumes. Ele utiliza processamento de linguagem natural (NLP) para identificar a intenção do usuário e fornecer respostas apropriadas, além de realizar consultoria de produtos e suporte ao cliente.
+Este chatbot foi desenvolvido para atuar como um assistente virtual em um marketplace. Ele utiliza processamento de linguagem natural (NLP) para identificar a intenção do usuário e fornecer respostas apropriadas, além de realizar consultoria de produtos e suporte ao cliente.
 
 ### ✨ Principais Recursos
 
 - ✅ **Identificação de Intenção**: Analisa o texto do usuário para determinar se ele busca suporte, informações sobre produtos ou consultoria de preços
 - ✅ **Saudações Dinâmicas**: Cumprimenta o usuário de forma diferente dependendo da hora do dia (manhã, tarde, noite)
 - ✅ **Análise de Similaridade**: Usa o algoritmo Jaro-Winkler para reconhecer palavras-chave mesmo com possíveis erros de digitação
-- ✅ **Identificação de Perfumes**: Reconhece quando o usuário menciona um perfume específico
+- ✅ **Identificação de Perfumes**: Reconhece quando o usuário menciona um perfume específico e cita o seu preço
 - ✅ **Aprendizado Contínuo**: Armazena novas pergunta em JSON para melhorar futuras interações
 - ✅ **Integração com WhatsApp**: Redireciona usuários para o suporte via WhatsApp
 
@@ -69,17 +69,7 @@ npm install
 node src/chat-bot.js
 ```
 
-O chatbot iniciará e aguardará sua entrada no terminal.
-
-## 💬 Como Funciona
-
-### Fluxo de Conversação
-
-1. **Saudação**: O chatbot cumprimenta o usuário com uma mensagem que varia conforme a hora do dia
-2. **Entrada**: O usuário digita sua pergunta ou demanda
-3. **Análise**: O chatbot analisa a entrada para identificar a intenção
-4. **Resposta**: De acordo com a intenção identificada, uma ação é executada
-5. **Continuação**: O chatbot pergunta se há mais dúvidas
+O chatbot iniciará e aguardará sua entrada no terminal
 
 ### Intenções Suportadas
 
