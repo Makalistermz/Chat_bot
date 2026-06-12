@@ -1,12 +1,13 @@
 /*
         Recomendar perfumes proxima atualização por categoria, ex: "Quero um perfume doce"
 */
-const readline = require('readline');
-const fs = require('fs');
-const open = require('open').default;  //Biblioteca responsavel por abrir o whatsapp
-const natural = require('natural');
+import { createInterface } from 'readline';
+import fs from 'fs';
+import open from 'open';  //Biblioteca responsavel por abrir o whatsapp
+import { identificarPerfume } from './identificarPerfume.js';
+import { verificarPalavra } from './verificarPalavras.js';
 
-const leitor = readline.createInterface({
+const leitor = createInterface({
     input: process.stdin,
     output: process.stdout
 })
@@ -51,20 +52,6 @@ function obterSaudacao() {
 //    )
 //);
 
-function verificarPalavra(resposta, listaPalavras) {
-    const palavrasDigitadas = resposta.split(' '); //Separar a frase em palavras
-
-    return listaPalavras.some(palavraChave => {
-        return palavrasDigitadas.some(palavraDigitada => {
-            const similaridade = natural.JaroWinklerDistance(  //Calcular a similaridade
-                palavraDigitada,
-                palavraChave
-            );
-            return resposta.includes(palavraChave) || similaridade >= 0.85;
-        });
-    });
-}
-
 function fraseAleatoria(lista) {
     const indiceAleatorio = Math.floor(Math.random() * lista.length);
     return lista[indiceAleatorio];
@@ -74,15 +61,6 @@ function perguntar() {
     leitor.question(obterSaudacao(), (resposta) => {  //chamei "obterSaudacao()" para retornar a frase do JSON.
     
         resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
-
-        function identificarPerfume(resposta) {
-            for (const perfume in produtos.perfumes) {
-                if (resposta.includes(perfume)) {
-                return produtos.perfumes[perfume];
-            }
-        }
-        return null;
-        }
 
         const perfumeEncontrado = identificarPerfume(resposta);
 
@@ -99,7 +77,7 @@ function perguntar() {
             open(linkWhatsapp);  //resposavel por abrir o whatsapp
             perguntarDenovo()
 
-        } else if(verificarPalavra(resposta, dados.palavrasChave.valor)) {
+        } else if(perfumeEncontrado && verificarPalavra(resposta, dados.palavrasChave.valor)) {
             console.log(
                 `O perfume ${perfumeEncontrado.nome} custa APENAS! R$ ${perfumeEncontrado.preco.toFixed(2)}`
             ) //toFixed(2) serve para formatar números decimais
@@ -119,7 +97,7 @@ function perguntar() {
                     } else if (categoria === '3') {
                         dados.palavrasChave.suporte.push(resposta)
                     } else if (categoria === '4') {
-                        dados.palavraChave.valor.push(resposta)
+                        dados.palavrasChave.valor.push(resposta)
                     } else {
                         console.log('Opção inválida.');
                         perguntar();
@@ -142,7 +120,7 @@ function perguntar() {
 
 }
 
-function perguntarDenovo() {
+export function perguntarDenovo() {
     leitor.question('Mais alguma duvida?', (resposta) => {
 
         resposta = resposta.toLowerCase();
