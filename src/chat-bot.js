@@ -85,10 +85,10 @@ function perguntar() {
                 console.log('Não entendi oque você quis dizer')
             
                 leitor.question(
-                    'Essa pergunta é sobre:\n1. Dia\n2. Origem do Produto\n3. Suporte\n4. Valor do produto\nEscolha uma opção: ', 
+                    'Essa pergunta é sobre:\n1. Categoria\n2. Origem do Produto\n3. Suporte\n4. Valor do produto\nEscolha uma opção: ', 
                     (categoria) => {
                         if (categoria === '1') {
-                            dados.intencoes.dia.push(resposta)
+                            dados.intencoes.categoria.push(resposta)
                         } else if (categoria === '2') {
                             dados.intencoes.origem_produto.push(resposta)
                         } else if (categoria === '3') {
