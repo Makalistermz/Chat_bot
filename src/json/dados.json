@@ -4,33 +4,6 @@
             "dia",
             "data",
             "hoje"
-        ],
-        "origemProduto": [
-            "cidade",
-            "município",
-            "mercadoria",
-            "produto",
-            "vim",
-            "vir",
-            "vem",
-            "onde",
-            "de onde vai vir minha mercadoria?",
-            "de onde vai vim meu produto",
-            "de onde ira vim minha mercadoria?"
-        ],
-        "suporte": [
-            "ajuda",
-            "suporte",
-            "atendente",
-            "atendimento",
-            "whatsapp"
-        ],
-        "valor": [
-            "preço",
-            "valor",
-            "quanto",
-            "vale",
-            "qual"
         ]
     },
 

@@ -88,13 +88,13 @@ function perguntar() {
                     'Essa pergunta é sobre:\n1. Dia\n2. Origem do Produto\n3. Suporte\n4. Valor do produto\nEscolha uma opção: ', 
                     (categoria) => {
                         if (categoria === '1') {
-                            dados.palavrasChave.dia.push(resposta)
+                            dados.intencoes.dia.push(resposta)
                         } else if (categoria === '2') {
-                            dados.palavrasChave.origemProduto.push(resposta)
+                            dados.intencoes.origem_produto.push(resposta)
                         } else if (categoria === '3') {
-                            dados.palavrasChave.suporte.push(resposta)
+                            dados.intencoes.suporte.push(resposta)
                         } else if (categoria === '4') {
-                            dados.palavrasChave.valor.push(resposta)
+                            dados.intencoes.consultar_preco.push(resposta)
                         } else {
                             console.log('Opção inválida.');
                             perguntar();
