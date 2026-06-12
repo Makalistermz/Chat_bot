@@ -33,6 +33,37 @@
             "qual"
         ]
     },
+
+    "intencoes": {
+        "suporte": [
+            "ajuda",
+            "suporte",
+            "atendente",
+            "atendimento",
+            "whatsapp"
+        ],
+        "origem_produto": [
+            "cidade",
+            "município",
+            "mercadoria",
+            "produto",
+            "vim",
+            "vir",
+            "vem",
+            "onde",
+            "de onde vai vir minha mercadoria?",
+            "de onde vai vim meu produto",
+            "de onde ira vim minha mercadoria?"
+        ],
+        "consultar_preco": [
+            "preço",
+            "valor",
+            "quanto",
+            "vale",
+            "qual"
+        ]
+    },
+
     "resposta": {
         "origemProduto": [
             "Nossos Produtos são enviados de Santa Maria de Jetibá.",
@@ -40,11 +71,13 @@
             "A origem do produto é Santa Maria de Jetibá"
         ]
     },
+
     "saudacao": {
         "manha": "Bom dia! Como posso ajudar?",
         "tarde": "Boa tarde! Como posso ajudar?",
         "noite": "Boa noite! Como posso ajudar?"
     },
+
     "respFinal": {
         "finalizar": [
             "não",

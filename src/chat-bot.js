@@ -6,6 +6,10 @@ import fs from 'fs';
 import open from 'open';  //Biblioteca responsavel por abrir o whatsapp
 import { identificarPerfume } from './identificarPerfume.js';
 import { verificarPalavra } from './verificarPalavras.js';
+import { identificarIntencao } from './identificarIntencao.js';
+import { suporte } from './/intencoes/suporte.js';
+import { origemProduto } from './/intencoes/origemProduto.js';
+import { consultarPreco } from './/intencoes/consultarPreco.js';
 
 const leitor = createInterface({
     input: process.stdin,
@@ -13,11 +17,11 @@ const leitor = createInterface({
 })
 
 const dados = JSON.parse(
-    fs.readFileSync('../json/dados.json', 'utf8')
+    fs.readFileSync('./json/dados.json', 'utf8')
 );
 
 const produtos = JSON.parse(
-    fs.readFileSync('../json/produtos.json', 'utf8') 
+    fs.readFileSync('./json/produtos.json', 'utf8') 
 );
 
 const numeroSuporte = '5527995128081'
@@ -62,62 +66,55 @@ function perguntar() {
     
         resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
 
-        const perfumeEncontrado = identificarPerfume(resposta);
+        const intencao = identificarIntencao(resposta);
 
-        if (verificarPalavra(resposta, dados.palavrasChave.dia)) {  //O método ".includes()" verifica se uma string contém um determinado texto. O método ".some()" percorre o array e retorna true se pelo menos um item atender à condição.
-            console.log(`Hoje é: ${duvidas.dia}`);
-            perguntarDenovo()
-
-        } else if (verificarPalavra(resposta, dados.palavrasChave.origemProduto)) {
-            console.log(fraseAleatoria(dados.resposta.origemProduto))
-            perguntarDenovo()
-
-        } else if (verificarPalavra(resposta, dados.palavrasChave.suporte)) {
-            console.log('Abrindo Whatsapp do suporte...');
-            open(linkWhatsapp);  //resposavel por abrir o whatsapp
-            perguntarDenovo()
-
-        } else if(perfumeEncontrado && verificarPalavra(resposta, dados.palavrasChave.valor)) {
-            console.log(
-                `O perfume ${perfumeEncontrado.nome} custa APENAS! R$ ${perfumeEncontrado.preco.toFixed(2)}`
-            ) //toFixed(2) serve para formatar números decimais
+        switch (intencao) {
+            case 'suporte':
+                suporte(resposta);
+                perguntarDenovo();
+                break
+            case 'origem_produto':
+                origemProduto(resposta);
+                perguntarDenovo();
+                break
+            case 'consultar_preco': 
+                consultarPreco(resposta);
+                perguntarDenovo();
+                break
+            default:
+                console.log('Não entendi oque você quis dizer')
             
-            perguntarDenovo()
-        
-        } else {
-            console.log('Não entendi oque você quis dizer')
-            
-            leitor.question(
-                'Essa pergunta é sobre:\n1. Dia\n2. Origem do Produto\n3. Suporte\n4. Valor do produto\nEscolha uma opção: ', 
-                (categoria) => {
-                    if (categoria === '1') {
-                        dados.palavrasChave.dia.push(resposta)
-                    } else if (categoria === '2') {
-                        dados.palavrasChave.origemProduto.push(resposta)
-                    } else if (categoria === '3') {
-                        dados.palavrasChave.suporte.push(resposta)
-                    } else if (categoria === '4') {
-                        dados.palavrasChave.valor.push(resposta)
-                    } else {
-                        console.log('Opção inválida.');
-                        perguntar();
-                        return;
+                leitor.question(
+                    'Essa pergunta é sobre:\n1. Dia\n2. Origem do Produto\n3. Suporte\n4. Valor do produto\nEscolha uma opção: ', 
+                    (categoria) => {
+                        if (categoria === '1') {
+                            dados.palavrasChave.dia.push(resposta)
+                        } else if (categoria === '2') {
+                            dados.palavrasChave.origemProduto.push(resposta)
+                        } else if (categoria === '3') {
+                            dados.palavrasChave.suporte.push(resposta)
+                        } else if (categoria === '4') {
+                            dados.palavrasChave.valor.push(resposta)
+                        } else {
+                            console.log('Opção inválida.');
+                            perguntar();
+                            return;
+                        }
+                        
+                        fs.writeFileSync(  // salva a pergunta do user no JON
+                            '../json/dados.json',
+                            JSON.stringify(dados, null, 4)
+                        );
+
+                        perguntarDenovo()
+
                     }
-                    
-                    fs.writeFileSync(  // salva a pergunta do user no JON
-                        '../json/dados.json',
-                        JSON.stringify(dados, null, 4)
-                    );
+                );
+                return;
 
-                    perguntarDenovo()
-
-                }
-            );
-
-            return;
+                break
         }
-    });
-
+    })
 }
 
 export function perguntarDenovo() {

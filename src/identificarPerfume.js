@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 const produtos = JSON.parse(
-    fs.readFileSync('../json/produtos.json', 'utf8') 
+    fs.readFileSync('./json/produtos.json', 'utf8') 
 );
 
 export function identificarPerfume(resposta) {
