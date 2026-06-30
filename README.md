@@ -86,7 +86,7 @@ Quando o chatbot não compreende uma pergunta:
 2. Armazena a pergunta na categoria correspondente
 3. Usa essa informação em futuras interações
 
-## 🔧 Detalhes Técnicos
+## Detalhes Técnicos
 
 ### Algoritmo de Similaridade
 
