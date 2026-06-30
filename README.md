@@ -1,21 +1,21 @@
-# 🤖 Chat Bot - Marketplace Assistant
+# Chat Bot - Marketplace Assistant
 
 Um chatbot inteligente desenvolvido em **Node.js** para um marketplace, capaz de responder dúvidas, informar preços de produtos e direcionar clientes para o suporte.
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
 Este chatbot foi desenvolvido para atuar como um assistente virtual em um marketplace. Ele utiliza processamento de linguagem natural (NLP) para identificar a intenção do usuário e fornecer respostas apropriadas, além de realizar consultoria de produtos e suporte ao cliente.
 
-### ✨ Principais Recursos
+### Principais Recursos
 
-- ✅ **Identificação de Intenção**: Analisa o texto do usuário para determinar se ele busca suporte, informações sobre produtos ou consultoria de preços
-- ✅ **Saudações Dinâmicas**: Cumprimenta o usuário de forma diferente dependendo da hora do dia (manhã, tarde, noite)
-- ✅ **Análise de Similaridade**: Usa o algoritmo Jaro-Winkler para reconhecer palavras-chave mesmo com possíveis erros de digitação
-- ✅ **Identificação de Perfumes**: Reconhece quando o usuário menciona um perfume específico e cita o seu preço
-- ✅ **Aprendizado Contínuo**: Armazena novas pergunta em JSON para melhorar futuras interações
-- ✅ **Integração com WhatsApp**: Redireciona usuários para o suporte via WhatsApp
+- **Identificação de Intenção**: Analisa o texto do usuário para determinar se ele busca suporte, informações sobre produtos ou consultoria de preços
+- **Saudações Dinâmicas**: Cumprimenta o usuário de forma diferente dependendo da hora do dia (manhã, tarde, noite)
+- **Análise de Similaridade**: Usa o algoritmo Jaro-Winkler para reconhecer palavras-chave mesmo com possíveis erros de digitação
+- **Identificação de Perfumes**: Reconhece quando o usuário menciona um perfume específico e cita o seu preço
+- **Aprendizado Contínuo**: Armazena novas pergunta em JSON para melhorar futuras interações
+- **Integração com WhatsApp**: Redireciona usuários para o suporte via WhatsApp
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Node.js** - Runtime JavaScript
 - **Natural** (v8.1.1) - Biblioteca NLP para análise de similaridade de palavras
@@ -23,7 +23,7 @@ Este chatbot foi desenvolvido para atuar como um assistente virtual em um market
 - **Readline** - Interface de linha de comando
 - **JSON** - Armazenamento de dados
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 Chat_bot/
@@ -44,7 +44,7 @@ Chat_bot/
 └── LICENSE                         # Licença MIT
 ```
 
-## 🚀 Como Usar
+## Como Usar
 
 ### Requisitos
 - Node.js 14+ instalado
@@ -113,10 +113,10 @@ return resposta.includes(palavraChave) || similaridade >= 0.85;
 **produtos.json** - Contém:
 - Informações dos perfumes (nome, preço, origem, características)
 
-## 📝 Exemplo de Uso
+## Exemplo de Uso
 
 ```
-Opa! Como vai? 👋
+Opa! Como vai? 
 
 > qual o preço do perfume X-Men?
 Esse perfume custa R$ 89,90
@@ -132,26 +132,26 @@ Mais alguma duvida?
 Ok obrigado!
 ```
 
-## 🎯 Futuras Melhorias
+## Futuras Melhorias
 
 Conforme comentado no código:
-- 🔜 Recomendar perfumes por categoria (ex: "Quero um perfume doce")
-- 🔜 Melhorar análise de sentimentos
-- 🔜 Adicionar mais intenções de negócio
-- 🔜 Persistência melhorada de dados
+- Recomendar perfumes por categoria (ex: "Quero um perfume doce")
+- Melhorar análise de sentimentos
+- Adicionar mais intenções de negócio
+- Persistência melhorada de dados
 
-## 📄 Licença
+## Licença
 
 Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## 👤 Autor
+## Autor
 
 [Makalistermz](https://github.com/Makalistermz)
 
-## 🤝 Contribuições
+## Contribuições
 
 Contribuições são bem-vindas! Fique à vontade para abrir issues e pull requests.
 
 ---
 
-**Desenvolvido com ❤️ para melhorar a experiência do cliente no marketplace**
+**Desenvolvido para melhorar a experiência do cliente no marketplace**
