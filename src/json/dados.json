@@ -20,20 +20,10 @@
             "de onde vai vim meu produto",
             "de onde ira vim minha mercadoria?"
         ],
-        "consultar_preco": [
-            "preço",
-            "valor",
-            "quanto custa",
-            "vale",
-            "qual valor",
-            "custa"
-        ],
         "categoria": [
             "perfume",
-            "categoria",
             "indicar",
-            "indicação",
-            "um"
+            "indicação"
         ],
         "estoque": [
             "estoque",
@@ -44,6 +34,14 @@
             "tem",
             "restam",
             "sobrou"
+        ],
+        "consultar_preco": [
+            "preço",
+            "valor",
+            "quanto custa",
+            "vale",
+            "qual valor",
+            "custa"
         ]
     },
 
