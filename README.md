@@ -288,4 +288,7 @@ GitHub: [Makalistermz](https://github.com/Makalistermz)
 
 ## Licença
 
-Este projeto é livre para estudo e evolução.
+Este projeto está sob a licença MIT.  
+Isso permite uso, cópia, modificação e distribuição do código, desde que o aviso de copyright e a licença sejam mantidos.
+
+Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
