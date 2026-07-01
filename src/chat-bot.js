@@ -1,6 +1,3 @@
-/*
-    Recomendar perfumes proxima atualização por categoria, ex: "Quero um perfume doce"
-*/
 import { createInterface } from 'readline';
 import fs from 'fs';
 import open from 'open';  //Biblioteca responsavel por abrir o whatsapp

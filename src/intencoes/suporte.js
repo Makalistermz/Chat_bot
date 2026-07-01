@@ -1,5 +1,4 @@
 import open from 'open';
-import { perguntarDenovo } from '../chat-bot.js';
 
 const numeroSuporte = '5527995128081';
 const mensagem = 'Olá, Gostaria de falar com o suporte!';
@@ -9,5 +8,4 @@ const linkWhatsapp = `https://wa.me/${numeroSuporte}?text=${encodeURIComponent(m
 export function suporte(resposta) {
     console.log('Abrindo Whatsapp do suporte...');
     open(linkWhatsapp);
-    perguntarDenovo();
 }
