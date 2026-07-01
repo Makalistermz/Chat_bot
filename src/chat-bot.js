@@ -10,6 +10,7 @@ import { identificarIntencao } from './identificarIntencao.js';
 import { suporte } from './/intencoes/suporte.js';
 import { origemProduto } from './/intencoes/origemProduto.js';
 import { consultarPreco } from './/intencoes/consultarPreco.js';
+import { indicarCategoria } from './intencoes/indicarCategoria.js';
 
 const leitor = createInterface({
     input: process.stdin,
@@ -84,6 +85,9 @@ function respostas(resposta) {
             break
         case 'consultar_preco': 
             consultarPreco(resposta);
+            break
+        case 'categoria':
+            indicarCategoria(resposta);
             break
         default:
             console.log('Não entendi oque você quis dizer')
