@@ -1,5 +1,5 @@
 /*
-        Recomendar perfumes proxima atualização por categoria, ex: "Quero um perfume doce"
+    Recomendar perfumes proxima atualização por categoria, ex: "Quero um perfume doce"
 */
 import { createInterface } from 'readline';
 import fs from 'fs';
@@ -63,58 +63,60 @@ function fraseAleatoria(lista) {
 
 function perguntar() {
     leitor.question(obterSaudacao(), (resposta) => {  //chamei "obterSaudacao()" para retornar a frase do JSON.
-    
-        resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
 
-        const intencao = identificarIntencao(resposta);
+        respostas(resposta);
 
-        switch (intencao) {
-            case 'suporte':
-                suporte(resposta);
-                perguntarDenovo();
-                break
-            case 'origem_produto':
-                origemProduto(resposta);
-                perguntarDenovo();
-                break
-            case 'consultar_preco': 
-                consultarPreco(resposta);
-                perguntarDenovo();
-                break
-            default:
-                console.log('Não entendi oque você quis dizer')
-            
-                leitor.question(
-                    'Essa pergunta é sobre:\n1. Categoria\n2. Origem do Produto\n3. Suporte\n4. Valor do produto\nEscolha uma opção: ', 
-                    (categoria) => {
-                        if (categoria === '1') {
-                            dados.intencoes.categoria.push(resposta)
-                        } else if (categoria === '2') {
-                            dados.intencoes.origem_produto.push(resposta)
-                        } else if (categoria === '3') {
-                            dados.intencoes.suporte.push(resposta)
-                        } else if (categoria === '4') {
-                            dados.intencoes.consultar_preco.push(resposta)
-                        } else {
-                            console.log('Opção inválida.');
-                            perguntar();
-                            return;
-                        }
-                        
-                        fs.writeFileSync(  // salva a pergunta do user no JON
-                            '../json/dados.json',
-                            JSON.stringify(dados, null, 4)
-                        );
-
-                        perguntarDenovo()
-
-                    }
-                );
-                return;
-
-                break
-        }
     })
+}
+
+function respostas(resposta) {
+
+    resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
+
+    const intencao = identificarIntencao(resposta);
+    
+    switch (intencao) {
+        case 'suporte':
+            suporte(resposta);
+            break
+        case 'origem_produto':
+            origemProduto(resposta);
+            break
+        case 'consultar_preco': 
+            consultarPreco(resposta);
+            break
+        default:
+            console.log('Não entendi oque você quis dizer')
+        
+            leitor.question(
+                'Essa pergunta é sobre:\n1. Categoria\n2. Origem do Produto\n3. Suporte\n4. Valor do produto\nEscolha uma opção: ', 
+                (categoria) => {
+                    if (categoria === '1') {
+                        dados.intencoes.categoria.push(resposta)
+                    } else if (categoria === '2') {
+                        dados.intencoes.origem_produto.push(resposta)
+                    } else if (categoria === '3') {
+                        dados.intencoes.suporte.push(resposta)
+                    } else if (categoria === '4') {
+                        dados.intencoes.consultar_preco.push(resposta)
+                    } else {
+                        console.log('Opção inválida.');
+                        perguntar();
+                        return;
+                    }
+                    
+                    fs.writeFileSync(  // salva a pergunta do user no JON
+                        '../json/dados.json',
+                        JSON.stringify(dados, null, 4)
+                    );
+
+                }
+            );
+            return;
+
+            break
+    }
+    perguntarDenovo();
 }
 
 export function perguntarDenovo() {
@@ -128,7 +130,7 @@ export function perguntarDenovo() {
             leitor.close();  //usar dentro do ultimo leitor para não cortar os outros leitores
 
         } else {
-            perguntar();  //retorna para a pergunta
+            respostas(resposta);  //retorna para a pergunta
         }
     });
 }

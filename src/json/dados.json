@@ -61,7 +61,8 @@
     "respFinal": {
         "finalizar": [
             "não",
-            "certo"
+            "certo",
+            "nao"
         ]
     }
 }
