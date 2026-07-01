@@ -1,12 +1,4 @@
 {
-    "palavrasChave": {
-        "dia": [
-            "dia",
-            "data",
-            "hoje"
-        ]
-    },
-
     "intencoes": {
         "suporte": [
             "ajuda",
@@ -31,9 +23,10 @@
         "consultar_preco": [
             "preço",
             "valor",
-            "quanto",
+            "quanto custa",
             "vale",
-            "qual"
+            "qual valor",
+            "custa"
         ],
         "categoria": [
             "perfume",
@@ -41,6 +34,16 @@
             "indicar",
             "indicação",
             "um"
+        ],
+        "estoque": [
+            "estoque",
+            "disponível",
+            "quantos",
+            "quantas",
+            "unidades",
+            "tem",
+            "restam",
+            "sobrou"
         ]
     },
 
