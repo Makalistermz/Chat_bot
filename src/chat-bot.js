@@ -9,6 +9,7 @@ import { origemProduto } from './/intencoes/origemProduto.js';
 import { consultarPreco } from './/intencoes/consultarPreco.js';
 import { indicarCategoria } from './intencoes/indicarCategoria.js';
 import { verificarEstoque } from './intencoes/verificarEstoque.js';
+import { perguntaInteligente } from './intencoes/pergunta_inteligente.js';
 
 const leitor = createInterface({
     input: process.stdin,
@@ -68,7 +69,7 @@ function perguntar() {
     })
 }
 
-function respostas(resposta) {
+async function respostas(resposta) {
 
     resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
 
@@ -91,34 +92,7 @@ function respostas(resposta) {
             verificarEstoque(resposta);
             break
         default:
-            console.log('Não entendi oque você quis dizer')
-        
-            leitor.question(
-                'Essa pergunta é sobre:\n1. Categoria\n2. Origem do Produto\n3. Suporte\n4. Valor do produto\nEscolha uma opção: ', 
-                (categoria) => {
-                    if (categoria === '1') {
-                        dados.intencoes.categoria.push(resposta)
-                    } else if (categoria === '2') {
-                        dados.intencoes.origem_produto.push(resposta)
-                    } else if (categoria === '3') {
-                        dados.intencoes.suporte.push(resposta)
-                    } else if (categoria === '4') {
-                        dados.intencoes.consultar_preco.push(resposta)
-                    } else {
-                        console.log('Opção inválida.');
-                        perguntar();
-                        return;
-                    }
-                    
-                    fs.writeFileSync(  // salva a pergunta do user no JON
-                        '../json/dados.json',
-                        JSON.stringify(dados, null, 4)
-                    );
-
-                }
-            );
-            return;
-
+            await perguntaInteligente(resposta);
             break
     }
     perguntarDenovo();
