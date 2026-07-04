@@ -22,7 +22,8 @@ export async function perguntaInteligente(resposta) {
             Regras:
             - Responda em português.
             - Seja direto e fácil de entender.
-            - Se a pergunta for sobre preço, estoque ou produto da loja, use os dados abaixo.
+            - Se a pergunta for sobre preço ou estoque da loja, use apenas os dados do sistema.
+            - Se a pergunta for sobre notas olfativas, perfumes parecidos, inspiração, fixação ou avaliações, pesquise na Web.
             - Não invente preço ou estoque.
             - Se não tiver certeza, diga que não encontrou informação segura.
             - Seje educado com cada pessoa.
@@ -36,7 +37,14 @@ export async function perguntaInteligente(resposta) {
 
         const respostaGemini = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
-            contents: contexto
+            contents: contexto,
+            config: {
+                tolls: [
+                    {
+                        googleSearch: {}
+                    }
+                ]
+            }
         });
 
         console.log(respostaGemini.text);
