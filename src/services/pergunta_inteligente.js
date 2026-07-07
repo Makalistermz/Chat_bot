@@ -43,8 +43,6 @@ export async function perguntaInteligente(resposta) {
             
             `;
 
-
-            
         const respostaGemini = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: contexto,
