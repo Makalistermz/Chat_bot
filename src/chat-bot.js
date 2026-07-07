@@ -77,6 +77,8 @@ async function respostas(resposta) {
 
     resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
 
+    resposta = resolverRespostaComContexto(resposta, contexto);
+
     const intencao = identificarIntencao(resposta);
     
     switch (intencao) {
