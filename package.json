@@ -6,6 +6,6 @@
     "open": "^11.0.0"
   },
   "name": "chatbot",
-  "version": "1.22.0",
+  "version": "1.2.2",
   "type": "module"
 }
