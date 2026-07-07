@@ -6,7 +6,7 @@ const dados = JSON.parse(
     fs.readFileSync('./json/dados.json', 'utf8')
 );
 
-const contexto = {
+export const contexto = {
     ultimoPerfume: null,
     ultimoGenero: null, 
     ultimoPreco: null, 
@@ -41,7 +41,7 @@ export function ultimasResposta(resposta) {
 export function resolverRespostaComContexto(resposta, contexto) {
     const palavrasContexto = ['ele', 'ela', 'esse', 'essa', 'desse', 'dessa'];
 
-    const usaContexto = palavrasContexto.some(p = resposta.includes(p));
+    const usaContexto = palavrasContexto.some(p => resposta.includes(p));
 
     if (usaContexto && contexto.ultimoPerfume) {
         return `${resposta} ${contexto.ultimoPerfume}`;

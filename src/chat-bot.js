@@ -12,6 +12,7 @@ import { verificarEstoque } from './intencoes/verificarEstoque.js';
 import { perguntaInteligente } from './intencoes/pergunta_inteligente.js';
 import { ultimasResposta } from './historico.js';
 import { resolverRespostaComContexto } from './historico.js';
+import { contexto } from './historico.js';
 
 const leitor = createInterface({
     input: process.stdin,
@@ -63,12 +64,15 @@ function fraseAleatoria(lista) {
     return lista[indiceAleatorio];
 }
 
+function iniciarChat() {
+    console.log(obterSaudacao());
+    perguntar();
+}
+
 function perguntar() {
-    leitor.question(obterSaudacao(), (resposta) => {  //chamei "obterSaudacao()" para retornar a frase do JSON.
-
-        respostas(resposta);
-
-    })
+    leitor.question('\nVocê: ', async (resposta) => {
+        await respostas(resposta);
+    });
 }
 
 async function respostas(resposta) {
@@ -76,6 +80,12 @@ async function respostas(resposta) {
     const resultado = ultimasResposta(resposta);
 
     resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
+
+    if (['obrigado', 'obrigada', 'valeu', 'tchau', 'sair'].some(p => resposta.includes(p))) {
+        console.log('De nada! Até mais.');
+        leitor.close();
+        return;
+    }
 
     resposta = resolverRespostaComContexto(resposta, contexto);
 
@@ -101,23 +111,7 @@ async function respostas(resposta) {
             await perguntaInteligente(resposta);
             break
     }
-    perguntarDenovo();
+    perguntar();
 }
 
-export function perguntarDenovo() {
-    leitor.question('Mais alguma duvida?', (resposta) => {
-
-        resposta = resposta.toLowerCase();
-
-        if (dados.respFinal.finalizar.some(p => resposta.includes(p))){
-            console.log('Ok obrigado!')
-
-            leitor.close();  //usar dentro do ultimo leitor para não cortar os outros leitores
-
-        } else {
-            respostas(resposta);  //retorna para a pergunta
-        }
-    });
-}
-
-perguntar();
+iniciarChat();
