@@ -8,22 +8,27 @@
             "whatsapp"
         ],
         "origem_produto": [
-            "cidade",
-            "município",
-            "mercadoria",
-            "produto",
-            "vim",
-            "vir",
-            "vem",
-            "onde",
-            "de onde vai vir minha mercadoria?",
-            "de onde vai vim meu produto",
-            "de onde ira vim minha mercadoria?"
+            "de onde vem",
+            "de onde vai vir",
+            "origem",
+            "enviado de onde",
+            "mercadoria vem de onde"
         ],
         "categoria": [
-            "perfume",
-            "indicar",
-            "indicação"
+            "doce",
+            "floral",
+            "amadeirado",
+            "cítrico",
+            "fresco",
+            "masculino",
+            "feminino",
+            "noite",
+            "dia",
+            "recomendar",
+            "recomendação",
+            "me indique",
+            "me recomenda",
+            "quero um perfume"
         ],
         "estoque": [
             "estoque",
