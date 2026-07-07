@@ -14,6 +14,10 @@ const produtos = JSON.parse(
     fs.readFileSync('./json/produtos.json', 'utf8')
 );
 
+const dados = JSON.parse(
+    fs.readFileSync('./json/dados.json', 'utf8')
+)
+
 export async function perguntaInteligente(resposta) {
     try {
         const contexto = `
@@ -27,6 +31,7 @@ export async function perguntaInteligente(resposta) {
             - Não invente preço ou estoque.
             - Se não tiver certeza, diga que não encontrou informação segura.
             - Seje educado com cada pessoa.
+            - Use sempre os produtos da loja, caso o usuario quiser saber algo sobre o melhor perfume por exemplo.
 
             Produtos da loja:
             ${JSON.stringify(produtos, null, 2)}
