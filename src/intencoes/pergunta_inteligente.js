@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
 import fs from 'fs';
+import { suporte } from './suporte.js';
 
 dotenv.config({
     path: '../.env'
@@ -32,13 +33,17 @@ export async function perguntaInteligente(resposta) {
             - Se não tiver certeza, diga que não encontrou informação segura.
             - Seje educado com cada pessoa.
             - Use sempre os produtos da loja, caso o usuario quiser saber algo sobre o melhor perfume por exemplo.
-            - Tente covencer o cliente a comprar o produto
+            - Tente covencer o cliente a comprar o produto.
+            - Caso não saiba responder algo sobre a empresa carregue o numero do suporte.
 
             Produtos da loja:
             ${JSON.stringify(produtos, null, 2)}
 
             Pergunta do cliente:
             ${resposta}
+            
+            Numero do suporte:
+            ${suporte(resposta)}
             `;
 
         const respostaGemini = await ai.models.generateContent({
