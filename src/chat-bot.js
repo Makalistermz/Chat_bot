@@ -79,6 +79,28 @@ async function respostas(resposta) {
 
     const resultado = ultimasResposta(resposta);
 
+    const palavrasGemini = [
+        'melhor',
+        'descrição',
+        'descricao',
+        'notas',
+        'olfativas',
+        'fixação',
+        'fixacao',
+        'projeção',
+        'projecao', 
+        'parece',
+        'parecido',
+        'semelhante',
+        'vale a pena'
+    ];
+
+    if (palavrasGemini.some(p => resposta.includes(p))) {
+        await perguntaInteligente(resposta);
+        perguntar();
+        return;
+    }
+
     resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
 
     if (['obrigado', 'obrigada', 'valeu', 'tchau', 'sair'].some(p => resposta.includes(p))) {
