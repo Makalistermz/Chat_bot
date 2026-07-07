@@ -1,12 +1,12 @@
 import fs from 'fs';
-import { verificarPalavra } from './verificarPalavras.js';
+import { verificarPalavra } from './utils/verificarPalavras.js';
 
 const dados = JSON.parse(
-    fs.readFileSync('./json/dados.json', 'utf8')
+    fs.readFileSync('./data/dados.json', 'utf8')
 );
 
 const produtos = JSON.parse(
-    fs.readFileSync('./json/produtos.json', 'utf8') 
+    fs.readFileSync('./data/produtos.json', 'utf8') 
 );
 
 function normalizarTexto(texto) {

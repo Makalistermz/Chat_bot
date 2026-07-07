@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
 import fs from 'fs';
-import { suporte } from './suporte.js';
+import { suporte } from '../intencoes/suporte.js';
 
 dotenv.config({
     path: '../.env'
@@ -12,11 +12,11 @@ const ai = new GoogleGenAI({
 });
 
 const produtos = JSON.parse(
-    fs.readFileSync('./json/produtos.json', 'utf8')
+    fs.readFileSync('./data/produtos.json', 'utf8')
 );
 
 const dados = JSON.parse(
-    fs.readFileSync('./json/dados.json', 'utf8')
+    fs.readFileSync('./data/dados.json', 'utf8')
 )
 
 export async function perguntaInteligente(resposta) {
@@ -34,7 +34,6 @@ export async function perguntaInteligente(resposta) {
             - Seje educado com cada pessoa.
             - Use sempre os produtos da loja, caso o usuario quiser saber algo sobre o melhor perfume por exemplo.
             - Tente covencer o cliente a comprar o produto.
-            - Caso não saiba responder algo sobre a empresa carregue o numero do suporte.
 
             Produtos da loja:
             ${JSON.stringify(produtos, null, 2)}
@@ -42,8 +41,6 @@ export async function perguntaInteligente(resposta) {
             Pergunta do cliente:
             ${resposta}
             
-            Numero do suporte:
-            ${suporte(resposta)}
             `;
 
         const respostaGemini = await ai.models.generateContent({

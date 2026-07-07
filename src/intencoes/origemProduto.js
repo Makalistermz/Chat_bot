@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 const dados = JSON.parse(
-    fs.readFileSync('.//json/dados.json', 'utf8')
+    fs.readFileSync('.//data/dados.json', 'utf8')
 );
 
 function fraseAleatoria(lista) {

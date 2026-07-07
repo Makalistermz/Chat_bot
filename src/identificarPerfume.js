@@ -1,8 +1,8 @@
 import fs from 'fs';
-import { verificarPalavra } from './verificarPalavras.js';
+import { verificarPalavra } from './utils/verificarPalavras.js';
 
 const produtos = JSON.parse(
-    fs.readFileSync('./json/produtos.json', 'utf8') 
+    fs.readFileSync('./data/produtos.json', 'utf8') 
 );
 
 export function identificarPerfume(resposta) {

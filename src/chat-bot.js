@@ -1,15 +1,12 @@
 import { createInterface } from 'readline';
 import fs from 'fs';
-import open from 'open';  //Biblioteca responsavel por abrir o whatsapp
-import { identificarPerfume } from './identificarPerfume.js';
-import { verificarPalavra } from './verificarPalavras.js';
 import { identificarIntencao } from './identificarIntencao.js';
 import { suporte } from './/intencoes/suporte.js';
 import { origemProduto } from './/intencoes/origemProduto.js';
 import { consultarPreco } from './/intencoes/consultarPreco.js';
 import { indicarCategoria } from './intencoes/indicarCategoria.js';
 import { verificarEstoque } from './intencoes/verificarEstoque.js';
-import { perguntaInteligente } from './intencoes/pergunta_inteligente.js';
+import { perguntaInteligente } from './services/pergunta_inteligente.js';
 import { ultimasResposta } from './historico.js';
 import { resolverRespostaComContexto } from './historico.js';
 import { contexto } from './historico.js';
@@ -20,23 +17,10 @@ const leitor = createInterface({
 })
 
 const dados = JSON.parse(
-    fs.readFileSync('./json/dados.json', 'utf8')
+    fs.readFileSync('./data/dados.json', 'utf8')
 );
-
-const produtos = JSON.parse(
-    fs.readFileSync('./json/produtos.json', 'utf8') 
-);
-
-const numeroSuporte = '5527995128081'
-const mensagem = 'Olá, Gostaria de falar com o suporte!'
-
-const linkWhatsapp = `https://wa.me/${numeroSuporte}?text=${encodeURIComponent(mensagem)}`;
 
 let data = new Date().toLocaleDateString('pt-BR');
-
-const duvidas = {
-    dia: data
-}
 
 let identificarSaudacao = new Date();
 

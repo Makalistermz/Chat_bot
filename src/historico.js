@@ -3,7 +3,7 @@ import { identificarIntencao } from './identificarIntencao.js';
 import { identificarPerfume } from './identificarPerfume.js';
 
 const dados = JSON.parse(
-    fs.readFileSync('./json/dados.json', 'utf8')
+    fs.readFileSync('./data/dados.json', 'utf8')
 );
 
 export const contexto = {
