@@ -10,6 +10,7 @@ import { consultarPreco } from './/intencoes/consultarPreco.js';
 import { indicarCategoria } from './intencoes/indicarCategoria.js';
 import { verificarEstoque } from './intencoes/verificarEstoque.js';
 import { perguntaInteligente } from './intencoes/pergunta_inteligente.js';
+import { ultimasResposta } from './historico.js';
 
 const leitor = createInterface({
     input: process.stdin,
@@ -70,6 +71,8 @@ function perguntar() {
 }
 
 async function respostas(resposta) {
+
+    const resultado = ultimasResposta(resposta);
 
     resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
 
