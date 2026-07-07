@@ -37,3 +37,15 @@ export function ultimasResposta(resposta) {
     };
 
 }
+
+export function resolverRespostaComContexto(resposta, contexto) {
+    const palavrasContexto = ['ele', 'ela', 'esse', 'essa', 'desse', 'dessa'];
+
+    const usaContexto = palavrasContexto.some(p = resposta.includes(p));
+
+    if (usaContexto && contexto.ultimoPerfume) {
+        return `${resposta} ${contexto.ultimoPerfume}`;
+    }
+
+    return resposta;
+}
