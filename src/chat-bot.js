@@ -7,9 +7,11 @@ import { consultarPreco } from './/intencoes/consultarPreco.js';
 import { indicarCategoria } from './intencoes/indicarCategoria.js';
 import { verificarEstoque } from './intencoes/verificarEstoque.js';
 import { perguntaInteligente } from './services/pergunta_inteligente.js';
-import { ultimasResposta } from './historico.js';
-import { resolverRespostaComContexto } from './historico.js';
-import { contexto } from './historico.js';
+import { 
+        ultimasResposta,
+        resolverRespostaComContexto,
+        contexto 
+    } from './historico.js';
 
 const leitor = createInterface({
     input: process.stdin,
