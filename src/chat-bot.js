@@ -62,63 +62,43 @@ function perguntar() {
 }
 
 async function respostas(resposta) {
+    resposta = resposta.toLowerCase();
 
-    const resultado = ultimasResposta(resposta);
-
-    const palavrasGemini = [
-        'melhor',
-        'descrição',
-        'descricao',
-        'notas',
-        'olfativas',
-        'fixação',
-        'fixacao',
-        'projeção',
-        'projecao', 
-        'parece',
-        'parecido',
-        'semelhante',
-        'vale a pena'
-    ];
-
-    if (palavrasGemini.some(p => resposta.includes(p))) {
-        await perguntaInteligente(resposta);
-        perguntar();
-        return;
-    }
-
-    resposta = resposta.toLowerCase();  // reconhece maiúscula como minusculas
-
-    if (['obrigado', 'obrigada', 'valeu', 'tchau', 'sair'].some(p => resposta.includes(p))) {
+    if (['obrigado', 'obrigada', 'valeu', 'tchau', 'sair']
+        .some(p => resposta.includes(p))) {
         console.log('De nada! Até mais.');
         leitor.close();
         return;
     }
 
+    // Atualiza o último perfume mencionado.
+    ultimasResposta(resposta);
+
+    // Resolve "ele", "esse", etc. antes de enviar ao Gemini.
     resposta = resolverRespostaComContexto(resposta, contexto);
 
     const intencao = identificarIntencao(resposta);
-    
+
     switch (intencao) {
         case 'suporte':
             suporte(resposta);
-            break
+            break;
+
         case 'origem_produto':
             origemProduto(resposta);
-            break
-        case 'consultar_preco': 
-            consultarPreco(resposta);
-            break
+            break;
+
         case 'categoria':
             indicarCategoria(resposta);
-            break
-        case 'estoque':
-            verificarEstoque(resposta);
-            break
+            break;
+
+        // Preço, estoque e perguntas abertas vão para o Gemini.
+        // Ele poderá solicitar consultar_produto quando precisar.
         default:
             await perguntaInteligente(resposta);
-            break
+            break;
     }
+
     perguntar();
 }
 
