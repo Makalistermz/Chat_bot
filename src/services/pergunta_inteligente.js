@@ -1,63 +1,125 @@
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import dotenv from 'dotenv';
-import { GoogleGenAI } from '@google/genai';
-import fs from 'fs';
-import { suporte } from '../intencoes/suporte.js';
+import { GoogleGenAI, Type } from '@google/genai';
 
 dotenv.config({
-    path: '../.env'
+    path: fileURLToPath(new URL('../../.env', import.meta.url))
 });
 
 const ai = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY
 });
 
-const produtos = JSON.parse(
-    fs.readFileSync('./data/produtos.json', 'utf8')
-);
+// Esta função é executada pelo SEU código, não pelo Gemini.
+function consultarProduto(nome) {
+    const caminho = new URL('../data/produtos.json', import.meta.url);
+    const dados = JSON.parse(fs.readFileSync(caminho, 'utf8'));
 
-const dados = JSON.parse(
-    fs.readFileSync('./data/dados.json', 'utf8')
-)
+    const chave = nome.trim().toLowerCase();
+    const produto = dados.perfumes[chave];
 
-export async function perguntaInteligente(resposta) {
+    if (!produto) {
+        return { encontrado: false, mensagem: 'Produto não encontrado na loja.' };
+    }
+
+    return {
+        encontrado: true,
+        nome: produto.nome,
+        preco: produto.preco,
+        estoque: produto.estoque,
+        categoria: produto.categoria,
+        ocasiao: produto.ocasiao
+    };
+}
+
+// Isto é a DESCRIÇÃO da função que o Gemini pode solicitar.
+const consultarProdutoDeclaracao = {
+    name: 'consultar_produto',
+    description: 'Consulta preço, estoque e características de um perfume da loja.',
+    parameters: {
+        type: Type.OBJECT,
+        properties: {
+        nome: {
+            type: Type.STRING,
+            description: 'Nome do perfume mencionado pelo cliente.'
+        }
+        },
+        required: ['nome']
+    }
+};
+
+export async function perguntaInteligente(pergunta) {
     try {
-        const contexto = `
-            Você é um consultor especialista em perfumes de um marketplace.
-
-            Regras:
-            - Responda em português.
-            - Seja direto e fácil de entender.
-            - Se a pergunta for sobre preço ou estoque da loja, use apenas os dados do sistema.
-            - Se a pergunta for sobre notas olfativas, perfumes parecidos, inspiração, fixação ou avaliações, pesquise na Web.
-            - Não invente preço ou estoque.
-            - Se não tiver certeza, diga que não encontrou informação segura.
-            - Seje educado com cada pessoa.
-            - Use sempre os produtos da loja, caso o usuario quiser saber algo sobre o melhor perfume por exemplo.
-            - Tente covencer o cliente a comprar o produto.
-
-            Produtos da loja:
-            ${JSON.stringify(produtos, null, 2)}
-
-            Pergunta do cliente:
-            ${resposta}
-            
-            `;
-
-        const respostaGemini = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: contexto,
-            config: {
-                tolls: [
-                    {
-                        googleSearch: {}
-                    }
-                ]
+        const historico = [
+            {
+                role: 'user',
+                parts: [{ text: pergunta }]
             }
+        ];
+
+        const config = {
+            systemInstruction: `
+                Você é um consultor de perfumes.
+                Responda em português.
+                Para falar de preço ou estoque da loja, consulte a função disponível.
+                Nunca invente preço, estoque ou características de um produto.
+            `,
+            tools: [
+                { functionDeclarations: [consultarProdutoDeclaracao] }
+            ]
+        };
+
+        // 1. O Gemini lê a pergunta e pode solicitar uma função.
+        const primeiraResposta = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: historico,
+            config
         });
 
-        console.log(respostaGemini.text);
+        const chamada = primeiraResposta.functionCalls?.[0];
 
+        // Se não precisar consultar a loja, ele responde diretamente.
+        if (!chamada) {
+            console.log(`Bot: ${primeiraResposta.text}`);
+            return;
+        }
+
+        if (chamada.name !== 'consultar_produto') {
+            throw new Error(`Função não permitida: ${chamada.name}`);
+        }
+
+        if (typeof chamada.args?.nome !== 'string') {
+            throw new Error('Nome do produto inválido.');
+        }
+
+        // 2. SEU código executa a consulta.
+        const produto = consultarProduto(chamada.args.nome);
+
+        // 3. Enviamos ao Gemini a solicitação original e o resultado real.
+        historico.push(primeiraResposta.candidates[0].content);
+
+        historico.push({
+            role: 'user',
+            parts: [
+                {
+                functionResponse: {
+                    name: chamada.name,
+                    response: { produto },
+                    ...(chamada.id ? { id: chamada.id } : {})
+                }
+                }
+            ]
+        });
+
+        const respostaFinal = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: historico,
+            config
+        });
+
+        console.log(`Bot: ${respostaFinal.text}`);
     } catch (erro) {
-        console.error(erro.message);
+        console.error('Erro ao responder:', erro.message);
     }
 }
