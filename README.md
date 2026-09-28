@@ -481,16 +481,10 @@ O arquivo `.env` não deve ser enviado para o GitHub.
 
 Ele já está incluído no `.gitignore`.
 
-### 5. Entre na pasta `src`
+### 5. Execute o chatbot
 
 ```bash
-cd src
-```
-
-### 6. Execute o chatbot
-
-```bash
-node chat-bot.js
+node run ia
 ```
 
 ---
