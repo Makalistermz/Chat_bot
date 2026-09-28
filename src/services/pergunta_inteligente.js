@@ -72,7 +72,7 @@ export async function perguntaInteligente(pergunta) {
 
         // 1. O Gemini lê a pergunta e pode solicitar uma função.
         const primeiraResposta = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-3.8-flash',
             contents: historico,
             config
         });
@@ -113,7 +113,7 @@ export async function perguntaInteligente(pergunta) {
         });
 
         const respostaFinal = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
+            model: 'gemini-3.8-flash',
             contents: historico,
             config
         });
